@@ -1,0 +1,25 @@
+<div class="container py-4">
+  <div class="card shadow-sm">
+    <div class="card-header bg-dark text-white">
+      <h5 class="mb-0">Chatbot</h5>
+    </div>
+
+    <div class="card-body" style="height: 400px; overflow-y: auto;">
+      <div *ngFor="let entry of chatLog" class="mb-3">
+        <div *ngIf="entry.from === 'user'" class="text-end">
+          <span class="badge bg-primary">{{ entry.text }}</span>
+        </div>
+        <div *ngIf="entry.from === 'bot'" class="text-start">
+          <span class="badge bg-secondary">{{ entry.text }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="input-group">
+        <input [(ngModel)]="message" (keyup.enter)="sendMessage()" type="text" class="form-control" placeholder="Type your message...">
+        <button (click)="sendMessage()" class="btn btn-primary">Send</button>
+      </div>
+    </div>
+  </div>
+</div>
