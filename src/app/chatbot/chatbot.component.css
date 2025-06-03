@@ -76,7 +76,7 @@
 }
 
 .user-message .badge {
-  background-color: #007bff !important;
+  background-color: #5673af !important;
   max-width: 85%;
   word-wrap: break-word;
   text-align: left;
@@ -88,7 +88,7 @@
 }
 
 .bot-message .badge {
-  background-color: #6c757d !important;
+  background-color: #81878bc6 !important;
   max-width: 75%;  /* Reduced to account for avatar space */
   word-wrap: break-word;
   text-align: left;
