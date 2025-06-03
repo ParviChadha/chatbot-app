@@ -1,25 +1,72 @@
-<div class="container py-4">
-  <div class="card shadow-sm">
-    <div class="card-header bg-dark text-white">
-      <h5 class="mb-0">Chatbot</h5>
+<!-- Floating Chatbot Widget -->
+<div class="chatbot-widget">
+  <!-- Chat Toggle Button -->
+  <button 
+    *ngIf="!isChatOpen" 
+    class="chat-toggle-btn btn btn-primary rounded-circle shadow-lg" 
+    (click)="toggleChat()"
+    title="Open Chat">
+    <i class="fas fa-comments"></i> <!-- Font awsome icon for the chat bubble widget-->
+  </button>
+
+  <!-- Chat Window -->
+  <div *ngIf="isChatOpen" class="chat-window card shadow-lg">
+    <!-- Chat Header -->
+    <div class="chat-header card-header bg-dark text-white d-flex justify-content-between align-items-center" style="background-color: #230f8b !important;">
+      <h6 class="mb-0">
+        <img src="ils-logo.jpg" alt="ILS Logo" class="chat-logo me-2">
+        ILS Assistant
+      </h6>
+      <button class="btn btn-sm btn-outline-light" (click)="toggleChat()" title="Close Chat">
+        <i class="fas fa-times"></i>
+      </button>
     </div>
 
-    <div class="card-body" style="height: 400px; overflow-y: auto;">
-      <div *ngFor="let entry of chatLog" class="mb-3">
-        <div *ngIf="entry.from === 'user'" class="text-end">
-          <span class="badge bg-primary">{{ entry.text }}</span>
+    <!-- Chat Body -->
+    <div class="chat-body card-body" #chatBody>
+      <div *ngFor="let entry of chatLog" class="chat-message mb-3">
+        <div *ngIf="entry.from === 'user'" class="user-message text-end">
+          <span class="badge bg-primary rounded-pill px-3 py-2">{{ entry.text }}</span>
         </div>
-        <div *ngIf="entry.from === 'bot'" class="text-start">
-          <span class="badge bg-secondary">{{ entry.text }}</span>
+        <div *ngIf="entry.from === 'bot'" class="bot-message text-start">
+          <img src="ils-logo.jpg" alt="ILS Avatar" class="bot-avatar">
+          <span class="badge bg-secondary rounded-pill px-3 py-2">{{ entry.text }}</span>
         </div>
+      </div>
+      
+      <!-- Typing indicator -->
+      <div *ngIf="isTyping" class="bot-message text-start mb-3">
+        <img src="ils-logo.jpg" alt="ILS Avatar" class="bot-avatar">
+        <span class="badge bg-light text-dark rounded-pill px-3 py-2">
+          <span class="typing-indicator">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+        </span>
       </div>
     </div>
 
-    <div class="card-footer">
+    <!-- Chat Footer -->
+    <div class="chat-footer card-footer">
       <div class="input-group">
-        <input [(ngModel)]="message" (keyup.enter)="sendMessage()" type="text" class="form-control" placeholder="Type your message...">
-        <button (click)="sendMessage()" class="btn btn-primary">Send</button>
+        <input 
+          [(ngModel)]="message" 
+          (keyup.enter)="sendMessage()" 
+          type="text" 
+          class="form-control" 
+          placeholder="Type your message..."
+          [disabled]="isTyping">
+        <button 
+          (click)="sendMessage()" 
+          class="btn btn-primary"
+          [disabled]="isTyping || !message.trim()">
+          <i class="fas fa-paper-plane"></i>
+        </button>
       </div>
     </div>
   </div>
 </div>
+
+<!-- Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
