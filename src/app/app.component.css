@@ -40,7 +40,7 @@ body {
 /* Navbar brand text styling */
 .navbar-brand-text {
   color: white !important;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   font-weight: 700;
   text-decoration: none;
 }
@@ -52,12 +52,12 @@ body {
 /* Hero Section */
 .hero-section {
   background-color: #f8f9fa;
-  min-height: 70vh;
+  min-height: 66vh;
   display: flex;
   align-items: center;
   position: relative;
   overflow: hidden;
-  padding: 4rem 0;
+  padding: 1.5rem 1;
 }
 
 .hero-content h1 {
@@ -83,14 +83,14 @@ body {
 }
 
 .hero-image img {
-  max-width: 100%;
+  max-width: 65%;
   height: auto;
   filter: drop-shadow(0 10px 30px rgba(0,0,0,0.1));
 }
 
 /* Services Section */
 .services-section {
-  padding: 4rem 0;
+  padding: 3rem 1;
   background-color: #5673af !important;
 }
 
